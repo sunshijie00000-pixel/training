@@ -1,113 +1,201 @@
 ﻿<!DOCTYPE html>
-
 <html lang="zh-CN">
 <head>
-    
-<meta charset="UTF-8">
-    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<title>我的第一个网站</title>
-    
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Site</title>
 <style>
-        
 * {
-            margin: 0;
-            
-padding: 0;
-            
-box-sizing: border-box;
-            
-font-family: "Microsoft YaHei", sans-serif;
-        
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-        
+html {
+  scroll-behavior: smooth;
+}
 body {
-            background: #f5f5f5;
-        
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0b0b0e;
+  color: #fff;
+  overflow-x: hidden;
 }
-        
-header {
-            
-background: #2c3e50;
-            
-color: white;
-            
-padding: 20px;
-            
-text-align: center;
-        
+
+/* 背景动态渐变 */
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(1200px 600px at 50% 0%, #2a2a5a 0%, #12121a 60%, #0b0b0e 100%);
+  z-index: -2;
 }
-        
-.container {
-            
-max-width: 1000px;
-            
-margin: 30px auto;
-            
-padding: 20px;
-            
-background: white;
-            
-border-radius: 8px;
-            
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        
+
+/* 浮动光点 */
+.light {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(100, 80, 255, 0.15), transparent 70%);
+  animation: float 12s infinite ease-in-out;
+  z-index: -1;
 }
-        
-h1 {
-            margin-bottom: 20px;
-        
+@keyframes float {
+  0%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(40px,-40px) scale(1.1); }
+  100%{ transform: translate(0,0) scale(1); }
 }
-        
-p {
-            font-size: 18px;
-            
-line-height: 1.6;
-            
-margin-bottom: 15px;
-        
+
+/* 导航 */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 22px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: rgba(18,18,26,0.6);
+  z-index: 99;
 }
-        
-footer {
-            
-text-align: center;
-            
-padding: 20px;
-            
-color: #666;
-        
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
 }
-    
+
+/* 英雄区 */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+.hero h1 {
+  font-size: clamp(38px, 8vw, 72px);
+  font-weight: 700;
+  background: linear-gradient(90deg, #7f53ff, #50c2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  animation: fadeUp 1s 0.2s forwards;
+}
+.hero p {
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 12px;
+  opacity: 0;
+  animation: fadeUp 1s 0.4s forwards;
+}
+@keyframes fadeUp {
+  to { opacity:1; transform: translateY(0); }
+  from { opacity:0; transform: translateY(20px); }
+}
+
+/* 按钮 */
+.btn {
+  margin-top: 32px;
+  padding: 14px 30px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #6a4dff, #42a5ff);
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(100,80,255,0.3);
+}
+
+/* 内容卡片 */
+.section {
+  max-width: 1000px;
+  margin: 0 auto 120px;
+  padding: 0 20px;
+}
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(120,100,255,0.4);
+}
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card p {
+  color: #999;
+  line-height: 1.6;
+}
+
+/* 底部 */
+.footer {
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
 </style>
 </head>
-<body>
-    
-<header>
-        
-<h1>欢迎来到我的网站</h1>
-    
-</header>
 
-    
-<div class="container">
-        
-<h2>这是我做的第一个网站！</h2>
-        
-<p>你可以在这里写任何你想展示的内容：介绍、文章、图片、联系方式等等。</p>
-        
-<p>这个网站支持手机、电脑自动适配。
-</p>
-    
+<body>
+<div class="gradient-bg"></div>
+<div class="light"></div>
+
+<div class="nav">
+  <div class="logo">MY SITE</div>
 </div>
 
-    
-<footer>
-        
-? 2026 我的网站 - 由我亲手制作
-    
-</footer>
+<section class="hero">
+  <h1>Hi, I'm sunshijie</h1>
+  <p>现代风格 · 动态效果 · 极简高级感</p>
+  <a href="#about" class="btn">进入主页</a>
+</section>
 
+<section class="section" id="about">
+  <h2>关于本站</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>现代设计</h3>
+      <p>采用当下最流行的深色渐变、玻璃质感、流畅动画，视觉干净高级。</p>
+    </div>
+    <div class="card">
+      <h3>动态效果</h3>
+      <p>背景浮动、渐入渐出、悬停上浮、平滑滚动，全站丝滑交互。</p>
+    </div>
+    <div class="card">
+      <h3>自适应</h3>
+      <p>电脑、平板、手机全部自动适配，任何设备都完美显示。</p>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  © 2026 My Site | Built with HTML & CSS
+</div>
 </body>
-
 </html>
