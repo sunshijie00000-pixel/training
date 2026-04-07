@@ -884,33 +884,26 @@
     }
   }
 
-/* 音乐播放器样式 */
-.music-player {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0,0,0,0.6);
-  padding: 10px 15px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 14px;
-  backdrop-filter: blur(10px);
-  z-index: 9999;
+<style>
+.music-player{
+  position:fixed;bottom:20px;left:20px;
+  background:rgba(0,0,0,.6);
+  padding:10px 16px;border-radius:50px;
+  display:flex;align-items:center;gap:10px;
+  color:#fff;font-size:14px;
+  backdrop-filter:blur(10px);
+  z-index:99999;
 }
-.music-player button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+.music-player button{
+  background:none;border:none;color:#fff;font-size:16px;cursor:pointer;
 }
-.music-player input[type="range"] {
-  width: 100px;
-  cursor: pointer;
-}
+</style>
+
+<div class="music-player">
+  <audio id="bgm" controls loop
+    src="https://cdn.freesound.org/previews/581/581358_501282-lq.mp3">
+  
+</div>
 </style>
 <!-- 引入图标库（增强视觉） -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
