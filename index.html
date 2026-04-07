@@ -1141,13 +1141,27 @@
     </div>
   </section>
 
-  <!-- 音乐播放器 -->
-  <div class="music-player">
-    <button onclick="bgm.play()">▶ 播放</button>
-    <button onclick="bgm.pause()">⏸ 暂停</button>
-    <span>音量</span>
-    <input type="range" min="0" max="1" step="0.01" value="0.6" oninput="bgm.volume=this.value">
-  </div>
+<!-- 音乐播放器 -->
+<div class="music-player">
+  <button id="playBtn">▶ 播放</button>
+  <button id="pauseBtn">⏸ 暂停</button>
+  <span>音量</span>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.6">
+</div>
+
+<!-- 音频标签 -->
+<audio id="bgm" loop>
+  <source src="https://web-assets.samebeing.cn/music/popular-demo.mp3" type="audio/mpeg">
+
+
+<script>
+const bgm = document.getElementById('bgm');
+document.getElementById('playBtn').onclick = () => { bgm.play(); };
+document.getElementById('pauseBtn').onclick = () => { bgm.pause(); };
+document.getElementById('volumeSlider').oninput = (e) => {
+  bgm.volume = e.target.value;
+};
+</script>
 
 <audio id="bgm" loop>
   <source src="https://music.163.com/song/media/outer/url?id=2571665666.mp3" type="audio/mpeg">
