@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿sunshijie 个人高级网站（完整可复制代码，支持视频链接替换）
+
+以下是完整可直接复制的网站代码，包含所有动态特效、页面布局，适配GitHub Pages，预留GitHub Releases视频链接替换位，替换后视频可直接播放，复制后保存为 index.html 即可上传使用，适配所有设备，无乱码、无报错：
+
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
@@ -272,7 +276,7 @@
     50% { transform: translateX(-50%) translateY(-10px); }
   }
 
-  /* 关于我（3D 卡片 + 悬停特效） */
+  /* 无意间（3D 卡片 + 悬停特效 + 视频嵌入，预留GitHub Releases链接替换位） */
   .section {
     padding: 120px 5vw;
     position: relative;
@@ -346,6 +350,25 @@
     color: #aaa;
     line-height: 1.8;
     margin-bottom: 24px;
+  }
+  /* 视频嵌入容器（适配GitHub Pages，暗黑玻璃态，预留Releases链接替换位） */
+  .video-container {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 10px;
+    margin: 25px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .video-container video, .video-container iframe {
+    width: 100%;
+    border-radius: 8px;
+    outline: none;
+  }
+  .video-desc {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 10px;
+    text-align: center;
   }
   .about-stats {
     display: grid;
@@ -461,7 +484,7 @@
     to { width: var(--progress); }
   }
 
-  /* 项目区（3D 卡片 + hover 放大 + 遮罩动画） */
+  /* 项目区（3D 卡片 + hover 放大 + 遮罩动画 + 项目演示视频，预留链接替换位） */
   .projects-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -561,6 +584,16 @@
   }
   .project-link:hover::after {
     width: 100%;
+  }
+  /* 项目视频演示（单独模块，适配GitHub Pages，预留Releases链接替换位） */
+  .project-video {
+    margin-top: 60px;
+    text-align: center;
+  }
+  .project-video h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
   }
 
   /* 联系区（玻璃态表单 + 提交动画） */
@@ -830,6 +863,9 @@
     .about-stats {
       grid-template-columns: 1fr 1fr;
     }
+    .video-container {
+      padding: 8px;
+    }
   }
   @media (max-width: 480px) {
     .navbar {
@@ -847,10 +883,47 @@
     .footer-container {
       gap: 30px;
     }
+    .project-video h3 {
+      font-size: 20px;
+    }
   }
 </style>
 <!-- 引入图标库（增强视觉） -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+  // 动态粒子背景（增强视觉效果）
+  document.addEventListener('DOMContentLoaded', function() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30; // 粒子数量，可调整
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // 随机粒子大小、位置、动画参数
+      const size = Math.random() * 30 + 10;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.setProperty('--x', Math.random() * 2 - 1); // 水平浮动范围
+      particle.style.setProperty('--y', Math.random() * 2 - 1); // 垂直浮动范围
+      particle.style.animationDelay = `${Math.random() * 5}s`; // 随机动画延迟
+      
+      particlesContainer.appendChild(particle);
+    }
+
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scroll');
+      } else {
+        navbar.classList.remove('scroll');
+      }
+    });
+  });
+</script>
 </head>
 <body>
   <!-- 动态背景 -->
@@ -863,7 +936,7 @@
   <nav class="navbar" id="navbar">
     <div class="logo">
       <span></span>
-      sunshijie
+      王玉洁
     </div>
     <div class="nav-links">
       <a href="#hero" class="nav-link">首页</a>
@@ -883,12 +956,12 @@
     <div class="hero-content">
       <div class="hero-subtitle">HELLO, I'M DEVELOPER</div>
       <h1 class="hero-title">
-        我是 <span>sunshijie</span><br>
-        前端开发者 & 设计爱好者
+        我是 <span>王玉洁</span><br>
+        和平精英 & 大肘子
       </h1>
       <p class="hero-desc">
-        专注于现代前端开发，擅长打造视觉精美、交互流畅的网站，
-        追求代码与设计的完美结合，用技术实现创意。
+        从接触和平精英开始，我便深深着迷于海岛猛攻的魅力,
+ 始终追求“战斗不止，灵魂不灭”的游戏理念。
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">查看我的项目</a>
@@ -900,23 +973,33 @@
     </div>
   </section>
 
-  <!-- 关于我 -->
+  <!-- 关于我（视频嵌入，预留GitHub Releases链接替换位） -->
   <section class="section" id="about">
     <h2 class="section-title">关于我</h2>
     <div class="about-container">
       <div class="about-img">
-        <img src="https://picsum.photos/id/1005/600/800" alt="个人照片" />
+        <img src="https://picsum.photos/id/1005/600/800" alt="sunshijie 个人照片" />
       </div>
       <div class="about-content">
-        <h3>用心打造每一个细节，用技术实现每一个创意</h3>
+        <h3>仰天大笑出门去，我辈岂是蓬蒿人。</h3>
         <p>
-          大家好，我是 sunshijie，一名热爱前端开发的创作者。从接触 HTML、CSS 开始，
-          我便深深着迷于网页开发的魅力，始终追求“视觉与体验并重”的开发理念。
+          大家好，我是王玉洁，一名热爱和平精英的大肘子。从接触和平精英开始，我便深深着迷于海岛猛攻的魅力，始终追求“战斗不止，灵魂不灭”的游戏理念。
         </p>
         <p>
-          我擅长使用现代前端技术，打造响应式、交互性强的网站，注重代码的规范性与可维护性，
-          同时关注设计趋势，让网站既有技术深度，又有视觉美感。
+          我会用实力说明一切。
         </p>
+        <!-- 本地视频嵌入（替换为GitHub Releases链接） -->
+        <div class="video-container">
+          <video 
+            src="https://github.com/https://github.com/sunshijie00000-pixel/training/releases/download/V1.0.1/1V3.mp4"  <!-- 替换这里！替换为你获取的GitHub Releases视频链接 -->
+            width="100%" 
+            controls 
+            poster="https://picsum.photos/id/1005/800/450"  <!-- 可保留原有封面图，也可替换为自己的封面 -->
+          >
+            您的浏览器不支持视频播放，请更换浏览器重试。
+          </video>
+          <p class="video-desc">个人介绍视频（GitHub Releases 视频，替换链接后可直接播放）</p>
+        </div>
         <div class="about-stats">
           <div class="stat-item">
             <div class="stat-number">10+</div>
@@ -945,7 +1028,7 @@
           <i class="fab fa-html5"></i>
         </div>
         <h3>HTML5</h3>
-        <p>熟练掌握 HTML5 语义化标签，构建结构清晰、可访问性强的网页布局。</p>
+        <p>熟练掌握全局运营思路。</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 90%"></div>
         </div>
@@ -955,7 +1038,7 @@
           <i class="fab fa-css3-alt"></i>
         </div>
         <h3>CSS3</h3>
-        <p>精通 CSS3 动画、渐变、Flex、Grid 布局，打造现代视觉效果与响应式设计。</p>
+        <p>精通M4A1、AK47、大菠萝等重型火力武器</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 85%"></div>
         </div>
@@ -965,7 +1048,7 @@
           <i class="fab fa-js"></i>
         </div>
         <h3>JavaScript</h3>
-        <p>掌握 JavaScript 基础语法，能实现交互效果、表单验证、动态数据渲染。</p>
+        <p>能在残局中稳定获胜。</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 75%"></div>
         </div>
@@ -975,7 +1058,7 @@
           <i class="fas fa-mobile-alt"></i>
         </div>
         <h3>响应式设计</h3>
-        <p>擅长适配各种设备，确保网站在电脑、平板、手机上都能完美显示。</p>
+        <p>擅长适配各种设备，完美操作。</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 95%"></div>
         </div>
@@ -985,7 +1068,7 @@
           <i class="fas fa-palette"></i>
         </div>
         <h3>UI/UX 设计</h3>
-        <p>了解现代设计趋势，注重用户体验，能打造简洁、美观、易用的界面。</p>
+        <p>了解当前版本。</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 80%"></div>
         </div>
@@ -994,8 +1077,8 @@
         <div class="skill-icon">
           <i class="fab fa-github"></i>
         </div>
-        <h3>版本控制</h3>
-        <p>熟练使用 GitHub 进行代码管理、版本控制，能独立完成项目部署。</p>
+        <h3>全图控制</h3>
+        <p>熟练使用小地图。</p>
         <div class="skill-progress">
           <div class="progress-bar" style="--progress: 85%"></div>
         </div>
@@ -1003,82 +1086,22 @@
     </div>
   </section>
 
-  <!-- 项目区 -->
+  <!-- 项目区（项目演示视频，预留GitHub Releases链接替换位） -->
   <section class="section" id="projects">
-    <h2 class="section-title">我的项目</h2>
+    <h2 class="section-title">我的战绩</h2>
     <div class="projects-container">
       <div class="project-card">
-        <img src="https://picsum.photos/id/180/600/400" alt="个人主页项目" class="project-img" />
+        <img src="https://picsum.photos/id/180/600/400" alt="个人战斗项目" class="project-img" />
         <div class="project-overlay">
           <h3 class="project-title">个人主页网站</h3>
-          <p class="project-desc">基于 HTML、CSS、JavaScript 打造的个人主页，融合现代设计与动态特效。</p>
+          <p class="project-desc">基于无敌战神。</p>
           <div class="project-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">JavaScript</span>
+            <span class="tag">最强大脑</span>
+            <span class="tag">枪械专家</span>
+            <span class="tag">残局之王</span>
           </div>
           <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right ml-2"></i></a>
         </div>
       </div>
       <div class="project-card">
-        <img src="https://picsum.photos/id/26/600/400" alt="响应式博客" class="project-img" />
-        <div class="project-overlay">
-          <h3 class="project-title">响应式博客网站</h3>
-          <p class="project-desc">支持多设备适配的博客网站，包含文章列表、详情页、分类功能。</p>
-          <div class="project-tags">
-            <span class="tag">响应式</span>
-            <span class="tag">Flex布局</span>
-            <span class="tag">动画效果</span>
-          </div>
-          <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="https://picsum.photos/id/48/600/400" alt="作品集网站" class="project-img" />
-        <div class="project-overlay">
-          <h3 class="project-title">作品集展示网站</h3>
-          <p class="project-desc">用于展示个人作品的网站，包含项目分类、作品详情、联系方式。</p>
-          <div class="project-tags">
-            <span class="tag">CSS动画</span>
-            <span class="tag">玻璃态</span>
-            <span class="tag">3D效果</span>
-          </div>
-          <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 联系区 -->
-  <section class="section" id="contact">
-    <h2 class="section-title">联系我</h2>
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>想要合作或交流？随时联系我</h3>
-        <p>
-          如果你对我的项目感兴趣，或者有合作、交流的需求，
-          可以通过以下方式联系我，我会尽快回复你。
-        </p>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="contact-text">
-            <h4>邮箱</h4>
-            <p>sunshijie00000@gmail.com</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <div class="contact-text">
-            <h4>GitHub</h4>
-            <p>sunshijie00000</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="
+        <img src="https://picsum.photos/id/26/600/400" alt="响应式博客" class="project
