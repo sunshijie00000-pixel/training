@@ -884,26 +884,52 @@
     }
   }
 
-<style>
-.music-player{
-  position:fixed;bottom:20px;left:20px;
-  background:rgba(0,0,0,.6);
-  padding:10px 16px;border-radius:50px;
-  display:flex;align-items:center;gap:10px;
-  color:#fff;font-size:14px;
-  backdrop-filter:blur(10px);
-  z-index:99999;
-}
-.music-player button{
-  background:none;border:none;color:#fff;font-size:16px;cursor:pointer;
-}
-</style>
-
+  <!-- 音乐播放器 -->
 <div class="music-player">
-  <audio id="bgm" controls loop
-    src="https://cdn.freesound.org/previews/581/581358_501282-lq.mp3">
-  
+  <button id="playBtn">▶ 播放</button>
+  <button id="pauseBtn">⏸ 暂停</button>
+  <span>音量</span>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.6">
 </div>
+
+<audio id="bgm" controls loop
+  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1b8de27d69.mp3">
+
+
+<script>
+const bgm = document.getElementById('bgm');
+document.getElementById('playBtn').addEventListener('click', () => {
+  bgm.play();
+});
+document.getElementById('pauseBtn').addEventListener('click', () => {
+  bgm.pause();
+});
+document.getElementById('volumeSlider').addEventListener('input', (e) => {
+  bgm.volume = e.target.value;
+});
+</script>
+
+<style>
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.7);
+  padding: 10px 16px;
+  border-radius: 50px;
+  display: flex;
+  gap: 10px;
+  color: #fff;
+  z-index: 9999;
+  align-items: center;
+}
+.music-player button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
 </style>
 <!-- 引入图标库（增强视觉） -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
