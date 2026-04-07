@@ -272,7 +272,44 @@
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(-10px); }
   }
+<style>
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 15px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+}
+.music-player button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.music-player input[type="range"] {
+  width: 100px;
+  cursor: pointer;
+}
+</style>
 
+<div class="music-player">
+  <button onclick="bgm.play()">▶ 播放</button>
+  <button onclick="bgm.pause()">⏸ 暂停</button>
+  <span>音量</span>
+  <input type="range" min="0" max="1" step="0.01" value="0.6" oninput="bgm.volume=this.value">
+</div>
+
+<audio id="bgm" loop autoplay>
+  <source src="https://api.uomg.com/api/rand.music?sort=纯音乐&format=mp3" type="audio/mpeg">
   /* 无意间（3D 卡片 + 悬停特效 + 视频嵌入，预留GitHub Releases链接替换位） */
   .section {
     padding: 120px 5vw;
@@ -928,9 +965,7 @@
     <div class="bg-gradient"></div>
     <div class="bg-particles" id="particles"></div>
   </div>
-<audio id="bgm" loop src="https://api.uomg.com/api/rand.music?sort=纯音乐&format=mp3" autoplay>
-<button onclick="bgm.pause()">关闭音乐</button>
-<button onclick="bgm.play()">开启音乐</button>
+
   <!-- 导航栏 -->
   <nav class="navbar" id="navbar">
     <div class="logo">
